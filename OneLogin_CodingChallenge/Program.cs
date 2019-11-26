@@ -6,14 +6,13 @@ namespace OneLogin_CodingChallenge
     {
         public static void Main()
         {
-            Console.WriteLine("Hello! Please enter your equation: ");
-            Console.Write("? ");
-            string equation = Console.ReadLine();
-            Calculator(equation);
-            // Things to consider: 
-                // order of operations
-                // negative numbers?
-            
+            while (true)
+            {
+                Console.WriteLine("Hello! Please enter your equation: ");
+                Console.Write("? ");
+                string equation = Console.ReadLine();
+                Calculator(equation);
+            }
         }
         public static string Calculator(string equation)
         {
@@ -60,8 +59,21 @@ namespace OneLogin_CodingChallenge
 
         public static int[] Divide(int numerator1, int numerator2, int denominator1, int denominator2)
         {
-            int newNumerator = numerator1 * denominator2;
-            int newDenominator = denominator1 * numerator2;
+            if (numerator2 == 0)
+            {
+                throw new Exception("Cannot divide by zero");
+            }
+            int sign;
+            if (numerator2 < 0)
+            {
+                sign = -1;
+            }
+            else
+            {
+                sign = 1;
+            }
+            int newNumerator = numerator1 * denominator2 * sign;
+            int newDenominator = denominator1 * numerator2 * sign;
             int[] result = new int[] { newNumerator, newDenominator };
             return result;
         }
@@ -84,7 +96,15 @@ namespace OneLogin_CodingChallenge
         {
             int numerator;
             int denominator;
-            if (operand.Contains("_"))
+            if (operand.Contains("_") && operand.Contains("-"))
+            {
+                string[] operandParts = operand.Split('_', '/');
+                int wholeNumber = Int32.Parse(operandParts[0]);
+                int tempNumerator = -1 * (Int32.Parse(operandParts[1]));
+                denominator = Int32.Parse(operandParts[2]);
+                numerator = tempNumerator + (denominator * wholeNumber);
+            }
+            else if (operand.Contains("_"))
             {
                 string[] operandParts = operand.Split('_', '/');
                 int wholeNumber = Int32.Parse(operandParts[0]);
@@ -103,20 +123,21 @@ namespace OneLogin_CodingChallenge
                 numerator = Int32.Parse(operand);
                 denominator = 1;
             }
-            int[] fractionComponents = new int[] { numerator, denominator };
+            int[] fractionComponents = new int[] { numerator, denominator};
             return fractionComponents;
         }
 
         public static string FractionFormat(int numerator, int denominator)
         {
-            if (numerator/denominator > 0)
+            int a = Math.Abs(numerator);
+            if (a/denominator > 0)
             {
                 int wholeNumber = numerator / denominator;
                 if(numerator % denominator == 0)
                 {
                     return $"= {wholeNumber}";
                 }
-                numerator = numerator % denominator;
+                numerator = Math.Abs(numerator % denominator);
                 int gcf = GreatestCommonFactor(numerator, denominator);
                 numerator = numerator / gcf;
                 denominator = denominator / gcf;
@@ -124,7 +145,7 @@ namespace OneLogin_CodingChallenge
             }
             else
             {
-                int gcf = GreatestCommonFactor(numerator, denominator);
+                int gcf = GreatestCommonFactor(a, denominator);
                 numerator = numerator / gcf;
                 denominator = denominator / gcf;
                 return $"= {numerator}/{denominator}";

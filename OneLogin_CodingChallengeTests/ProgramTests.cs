@@ -22,9 +22,37 @@ namespace OneLogin_CodingChallenge.Tests
             MainTest(equation, expected);
         }
         [TestMethod()]
+        public void MultiplyMainTest2()
+        {
+            string equation = "-1/2 * 3_3/4";
+            string expected = "= -1_7/8";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void MultiplyMainTest3()
+        {
+            string equation = "-1/2 * -3_3/4";
+            string expected = "= 1_7/8";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
         public void DivideMainTest()
         {
             string equation = "1/2 / 3_3/4";
+            string expected = "= 2/15";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void DivideMainTest2()
+        {
+            string equation = "-1/2 / 3_3/4";
+            string expected = "= -2/15";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void DivideMainTest3()
+        {
+            string equation = "-1/2 / -3_3/4";
             string expected = "= 2/15";
             MainTest(equation, expected);
         }
@@ -36,13 +64,61 @@ namespace OneLogin_CodingChallenge.Tests
             MainTest(equation, expected);
         }
         [TestMethod()]
+        public void AddMainTest2()
+        {
+            string equation = "-2_3/8 + 9/8";
+            string expected = "= -1_1/4";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void AddMainTest3()
+        {
+            string equation = "-2_3/8 + -9/8";
+            string expected = "= -3_1/2";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void AddMainTest4()
+        {
+            string equation = "2_3/8 + -9/8";
+            string expected = "= 1_1/4";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
         public void SubtractMainTest()
         {
             string equation = "2_3/8 - 9/8";
             string expected = "= 1_1/4";
             MainTest(equation, expected);
         }
-
+        [TestMethod()]
+        public void SubtractMainTest1()
+        {
+            string equation = "-2_3/8 - -9/8";
+            string expected = "= -1_1/4";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void SubtractMainTest2()
+        {
+            string equation = "-2_3/8 - 9/8";
+            string expected = "= -3_1/2";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void SubtractMainTest3()
+        {
+            string equation = "9/8 - 2_3/8";
+            string expected = "= -1_1/4";
+            MainTest(equation, expected);
+        }
+        [TestMethod()]
+        public void SubtractMainTest4()
+        {
+            string equation = "9/8 - -2_3/8";
+            string expected = "= 3_1/2";
+            MainTest(equation, expected);
+        }
         //Multiplication method tests
         public void MultiplyMethodTest(int numerator1, int numerator2, int denominator1, int denominator2, int[] expected)
         {
@@ -57,6 +133,26 @@ namespace OneLogin_CodingChallenge.Tests
             int numerator2 = 15;
             int denominator2 = 4;
             int[] expected = new int[] { 15, 8};
+            MultiplyMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void MultiplyMethodTest2()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = 15;
+            int denominator2 = 4;
+            int[] expected = new int[] { -15, 8 };
+            MultiplyMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void MultiplyMethodTest3()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = -15;
+            int denominator2 = 4;
+            int[] expected = new int[] { 15, 8 };
             MultiplyMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
 
@@ -76,7 +172,37 @@ namespace OneLogin_CodingChallenge.Tests
             int[] expected = new int[] { 4, 30 };
             DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
-
+        [TestMethod()]
+        public void DivideMethodTest2()
+        {
+            int numerator1 = 1;
+            int denominator1 = 2;
+            int numerator2 = -15;
+            int denominator2 = 4;
+            int[] expected = new int[] { -4, 30 };
+            DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void DivideMethodTest3()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = -15;
+            int denominator2 = 4;
+            int[] expected = new int[] { 4, 30 };
+            DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void DivideMethodTest4()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = 0;
+            int denominator2 = 4;
+            int[] expected = new int[] { };
+            DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
         // Addition method tests
         public void AddMethodTest(int numerator1, int numerator2, int denominator1, int denominator2, int[] expected)
         {
@@ -91,6 +217,36 @@ namespace OneLogin_CodingChallenge.Tests
             int numerator2 = 3;
             int denominator2 = 4;
             int[] expected = new int[] {10, 8};
+            AddMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void AddMethodTest2()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = 3;
+            int denominator2 = 4;
+            int[] expected = new int[] { 2, 8 };
+            AddMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void AddMethodTest3()
+        {
+            int numerator1 = 1;
+            int denominator1 = 2;
+            int numerator2 = -3;
+            int denominator2 = 4;
+            int[] expected = new int[] { -2, 8 };
+            AddMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void AddMethodTest4()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = -3;
+            int denominator2 = 4;
+            int[] expected = new int[] { -10, 8 };
             AddMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
 
@@ -110,7 +266,36 @@ namespace OneLogin_CodingChallenge.Tests
             int[] expected = new int[]{2, 8};
             SubtractMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
-
+        [TestMethod()]
+        public void SubtractMethodTest2()
+        {
+            int numerator1 = 1;
+            int denominator1 = 2;
+            int numerator2 = 3;
+            int denominator2 = 4;
+            int[] expected = new int[] { -2, 8 };
+            SubtractMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void SubtractMethodTest3()
+        {
+            int numerator1 = -3;
+            int denominator1 = 4;
+            int numerator2 = 1;
+            int denominator2 = 2;
+            int[] expected = new int[] { -10, 8 };
+            SubtractMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
+        [TestMethod()]
+        public void SubtractMethodTest4()
+        {
+            int numerator1 = -1;
+            int denominator1 = 2;
+            int numerator2 = -3;
+            int denominator2 = 4;
+            int[] expected = new int[] { 2, 8 };
+            SubtractMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
+        }
         // Operand components tests
         public void OperandComponentsTest(string operand, int[] expected)
         {
@@ -138,7 +323,20 @@ namespace OneLogin_CodingChallenge.Tests
             int[] expected = new int[] { 1, 4 };
             OperandComponentsTest(operand, expected);
         }
-
+        [TestMethod()]
+        public void OperandComponentsTest4()
+        {
+            string operand = "-1/4";
+            int[] expected = new int[] { -1, 4 };
+            OperandComponentsTest(operand, expected);
+        }
+        [TestMethod()]
+        public void OperandComponentsTest5()
+        {
+            string operand = "-3_1/4";
+            int[] expected = new int[] { -13, 4 };
+            OperandComponentsTest(operand, expected);
+        }
         // Fraction format tests
         public void FractionFormatTest(int numerator, int denominator, string expected)
         {
@@ -177,7 +375,30 @@ namespace OneLogin_CodingChallenge.Tests
             string expected = "= 1/4";
             FractionFormatTest(numerator, denominator, expected);
         }
-
+        [TestMethod()]
+        public void FractionFormatTest5()
+        {
+            int numerator = -1;
+            int denominator = 4;
+            string expected = "= -1/4";
+            FractionFormatTest(numerator, denominator, expected);
+        }
+        [TestMethod()]
+        public void FractionFormatTest6()
+        {
+            int numerator = -70;
+            int denominator = 30;
+            string expected = "= -2_1/3";
+            FractionFormatTest(numerator, denominator, expected);
+        }
+        [TestMethod()]
+        public void FractionFormatTest7()
+        {
+            int numerator = -75;
+            int denominator = 25;
+            string expected = "= -3";
+            FractionFormatTest(numerator, denominator, expected);
+        }
         //Greatest Common Factor Tests
         public void GreatestCommonFactorTest(int a, int b, int expected)
         {
