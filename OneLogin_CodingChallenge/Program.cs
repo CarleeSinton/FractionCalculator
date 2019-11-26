@@ -25,7 +25,7 @@ namespace OneLogin_CodingChallenge
             int numerator2 = operand2Parts[0];
             int denominator2 = operand2Parts[1];
 
-            int[] tempResult = new int[] {2};
+            int[] tempResult = new int[] { 2 };
             switch (givenOperator)
             {
                 case "*":
@@ -59,10 +59,6 @@ namespace OneLogin_CodingChallenge
 
         public static int[] Divide(int numerator1, int numerator2, int denominator1, int denominator2)
         {
-            if (numerator2 == 0)
-            {
-                throw new Exception("Cannot divide by zero");
-            }
             int sign;
             if (numerator2 < 0)
             {
@@ -123,17 +119,25 @@ namespace OneLogin_CodingChallenge
                 numerator = Int32.Parse(operand);
                 denominator = 1;
             }
-            int[] fractionComponents = new int[] { numerator, denominator};
+            int[] fractionComponents = new int[] { numerator, denominator };
             return fractionComponents;
         }
 
         public static string FractionFormat(int numerator, int denominator)
         {
+            if (numerator != 0 & denominator == 0)
+            {
+                return $"Cannot have a denominator equal to zero or divide by zero";
+            }
+            if (numerator == 0)
+            {
+                return $"= 0";
+            }
             int a = Math.Abs(numerator);
-            if (a/denominator > 0)
+            if (a / denominator > 0)
             {
                 int wholeNumber = numerator / denominator;
-                if(numerator % denominator == 0)
+                if (numerator % denominator == 0)
                 {
                     return $"= {wholeNumber}";
                 }
@@ -155,9 +159,10 @@ namespace OneLogin_CodingChallenge
         public static int GreatestCommonFactor(int a, int b)
         {
             int greatestCommonFactor;
-            while(a != 0 && b != 0)
+            while (a != 0 && b != 0)
             {
-                if (a > b){
+                if (a > b)
+                {
                     a %= b;
                 }
                 else

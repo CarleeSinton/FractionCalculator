@@ -193,14 +193,13 @@ namespace OneLogin_CodingChallenge.Tests
             DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
         public void DivideMethodTest4()
         {
             int numerator1 = -1;
             int denominator1 = 2;
             int numerator2 = 0;
             int denominator2 = 4;
-            int[] expected = new int[] { };
+            int[] expected = new int[] { -4, 0};
             DivideMethodTest(numerator1, numerator2, denominator1, denominator2, expected);
         }
         // Addition method tests
