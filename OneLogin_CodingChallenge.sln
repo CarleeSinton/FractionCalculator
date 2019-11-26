@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneLogin_CodingChallenge", "OneLogin_CodingChallenge\OneLogin_CodingChallenge.csproj", "{E5952A46-1AC5-4FD0-844A-864536306D42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneLogin_CodingChallengeTests", "OneLogin_CodingChallengeTests\OneLogin_CodingChallengeTests.csproj", "{7662209D-55A9-4D0E-989D-8570A6765BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodingChallenge", "CodingChallenge", "{FF718BBD-C20E-4DA9-BE81-4F1616A8A751}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5952A46-1AC5-4FD0-844A-864536306D42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5952A46-1AC5-4FD0-844A-864536306D42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5952A46-1AC5-4FD0-844A-864536306D42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5952A46-1AC5-4FD0-844A-864536306D42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7662209D-55A9-4D0E-989D-8570A6765BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7662209D-55A9-4D0E-989D-8570A6765BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7662209D-55A9-4D0E-989D-8570A6765BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7662209D-55A9-4D0E-989D-8570A6765BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E5952A46-1AC5-4FD0-844A-864536306D42} = {FF718BBD-C20E-4DA9-BE81-4F1616A8A751}
+		{7662209D-55A9-4D0E-989D-8570A6765BB3} = {FF718BBD-C20E-4DA9-BE81-4F1616A8A751}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E41E25F-1EC0-409C-A720-AF4817CDA9AF}
+	EndGlobalSection
+EndGlobal
