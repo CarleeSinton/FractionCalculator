@@ -6,14 +6,13 @@ namespace OneLogin_CodingChallenge
     {
         public static void Main()
         {
-            Console.WriteLine("Hello! Please enter your equation: ");
-            Console.Write("? ");
-            string equation = Console.ReadLine();
-            Calculator(equation);
-            // Things to consider: 
-                // order of operations
-                // negative numbers?
-            
+            while (true)
+            {
+                Console.WriteLine("Hello! Please enter your equation: ");
+                Console.Write("? ");
+                string equation = Console.ReadLine();
+                Calculator(equation);
+            }
         }
         public static string Calculator(string equation)
         {
@@ -26,7 +25,8 @@ namespace OneLogin_CodingChallenge
             int numerator2 = operand2Parts[0];
             int denominator2 = operand2Parts[1];
 
-            int[] tempResult = new int[] {2};
+            int[] tempResult = new int[] { 2 };
+
             switch (givenOperator)
             {
                 case "*":
@@ -60,11 +60,23 @@ namespace OneLogin_CodingChallenge
 
         public static int[] Divide(int numerator1, int numerator2, int denominator1, int denominator2)
         {
-            int newNumerator = numerator1 * denominator2;
-            int newDenominator = denominator1 * numerator2;
+
+            int sign;
+            if (numerator2 < 0)
+            {
+                sign = -1;
+            }
+            else
+            {
+                sign = 1;
+            }
+            int newNumerator = numerator1 * denominator2 * sign;
+            int newDenominator = denominator1 * numerator2 * sign;
+
             int[] result = new int[] { newNumerator, newDenominator };
             return result;
         }
+      
         public static int[] Add(int numerator1, int numerator2, int denominator1, int denominator2)
         {
             int newNumerator = (numerator1 * denominator2) + (denominator1 * numerator2);
@@ -72,6 +84,7 @@ namespace OneLogin_CodingChallenge
             int[] result = new int[] { newNumerator, newDenominator };
             return result;
         }
+      
         public static int[] Subtract(int numerator1, int numerator2, int denominator1, int denominator2)
         {
             int newNumerator = (numerator1 * denominator2) - (denominator1 * numerator2);
@@ -84,7 +97,16 @@ namespace OneLogin_CodingChallenge
         {
             int numerator;
             int denominator;
-            if (operand.Contains("_"))
+          
+            if (operand.Contains("_") && operand.Contains("-"))
+            {
+                string[] operandParts = operand.Split('_', '/');
+                int wholeNumber = Int32.Parse(operandParts[0]);
+                int tempNumerator = -1 * (Int32.Parse(operandParts[1]));
+                denominator = Int32.Parse(operandParts[2]);
+                numerator = tempNumerator + (denominator * wholeNumber);
+            }
+            else if (operand.Contains("_"))
             {
                 string[] operandParts = operand.Split('_', '/');
                 int wholeNumber = Int32.Parse(operandParts[0]);
@@ -109,14 +131,24 @@ namespace OneLogin_CodingChallenge
 
         public static string FractionFormat(int numerator, int denominator)
         {
-            if (numerator/denominator > 0)
+
+            if (numerator != 0 & denominator == 0)
+            {
+                return $"Cannot have a denominator equal to zero or divide by zero";
+            }
+            if (numerator == 0)
+            {
+                return $"= 0";
+            }
+            int a = Math.Abs(numerator);
+            if (a / denominator > 0)
             {
                 int wholeNumber = numerator / denominator;
-                if(numerator % denominator == 0)
+                if (numerator % denominator == 0)
                 {
                     return $"= {wholeNumber}";
                 }
-                numerator = numerator % denominator;
+                numerator = Math.Abs(numerator % denominator);
                 int gcf = GreatestCommonFactor(numerator, denominator);
                 numerator = numerator / gcf;
                 denominator = denominator / gcf;
@@ -124,7 +156,7 @@ namespace OneLogin_CodingChallenge
             }
             else
             {
-                int gcf = GreatestCommonFactor(numerator, denominator);
+                int gcf = GreatestCommonFactor(a, denominator);
                 numerator = numerator / gcf;
                 denominator = denominator / gcf;
                 return $"= {numerator}/{denominator}";
@@ -134,9 +166,10 @@ namespace OneLogin_CodingChallenge
         public static int GreatestCommonFactor(int a, int b)
         {
             int greatestCommonFactor;
-            while(a != 0 && b != 0)
+            while (a != 0 && b != 0)
             {
-                if (a > b){
+                if (a > b)
+                {
                     a %= b;
                 }
                 else
